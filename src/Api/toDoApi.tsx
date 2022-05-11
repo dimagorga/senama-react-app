@@ -1,10 +1,5 @@
 import axios from "axios";
 
-interface ItoDo {
-  toDo: string;
-  toDoId: string;
-}
-
 type ToDo = {
   _id: string;
   task: string;
@@ -22,12 +17,17 @@ export async function fetchToDos() {
   return data;
 }
 
-export async function postToDo(toDo: ItoDo) {
+export async function postToDo(toDo: object) {
   const { data } = await axios.post("/todo", toDo);
   return data;
 }
 
-export async function deleteTodo(toDoId: ItoDo) {
-  const { data } = await axios.delete(`/contacts/${toDoId}`);
+export async function deleteToDo(toDoId: string) {
+  const { data } = await axios.delete(`/todo/${toDoId}`);
+  return data;
+}
+
+export async function changeStatusToDo(toDoId: string, toDoStatus: object) {
+  const { data } = await axios.put(`/todo/${toDoId}`, toDoStatus);
   return data;
 }

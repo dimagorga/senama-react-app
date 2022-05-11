@@ -1,13 +1,36 @@
-import Button from "../Button/Button";
+import React, { useState } from "react";
+import { postToDo } from "../../Api/toDoApi";
 
-const Input = () => {
+interface Props {
+  getToDos: () => void;
+}
+
+const Input = ({ getToDos }: Props) => {
+  const [value, setValue] = useState<string>("");
+
+  const changeValue = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setValue(e.target.value);
+
+  const onBtnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const taskValue = { task: value };
+    console.log(taskValue);
+
+    postToDo(taskValue).then((data) => {
+      console.log(data);
+      getToDos();
+    });
+  };
+
   return (
     <div>
-      <label>
-        What you need to do?
-        <input />
-      </label>
-      <Button />
+      <form onSubmit={onBtnSubmit}>
+        <label>
+          What you need to do?
+          <input value={value} onChange={changeValue} />
+          <button>Create new ToDo </button>
+        </label>
+      </form>
     </div>
   );
 };

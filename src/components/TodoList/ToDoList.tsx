@@ -1,7 +1,7 @@
 import ToDoItem from "../ToDoItem/ToDoItem";
 import s from "./ToDoList.module.css";
-import { fetchToDos } from "../../Api/toDoApi";
-import { useEffect, useState } from "react";
+import { deleteToDo } from "../../Api/toDoApi";
+import { useEffect } from "react";
 
 type ToDo = {
   _id: string;
@@ -9,14 +9,32 @@ type ToDo = {
   isActive: boolean;
 };
 
-const ToDoList = () => {
-  const [toDos, setToDos] = useState<ToDo[] | null>(null);
+interface Props {
+  toDos: ToDo[];
+  getToDos: () => void;
+}
+
+const ToDoList = ({ toDos, getToDos }: Props) => {
+  // const [toDos, setToDos] = useState<ToDo[] | []>([]);
   useEffect(() => {
-    fetchToDos().then((data) => {
-      setToDos(data.toDos);
-      console.log(toDos);
-    });
+    getToDos();
   }, []);
+
+  // const getToDos = () => {
+  //   fetchToDos().then((data) => {
+  //     setToDos(data.toDos);
+  //     console.log(toDos);
+  //   });
+  // };
+
+  const onDelClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    console.log(e.currentTarget.id);
+    deleteToDo(e.currentTarget.id).then((data) => {
+      console.log(data);
+      getToDos();
+    });
+  };
+
   return (
     <div className={s.wrapper}>
       <ul className={s.list}>
@@ -27,6 +45,8 @@ const ToDoList = () => {
               _id={toDo._id}
               isActive={toDo.isActive}
               task={toDo.task}
+              onDelete={onDelClick}
+              getAllToDos={getToDos}
             />
           );
         })}
