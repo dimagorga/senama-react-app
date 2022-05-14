@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/senama-react-app/static/css/main.549c08a0.css",
-    "main.js": "/senama-react-app/static/js/main.b96fee71.js",
+    "main.css": "/senama-react-app/static/css/main.da147c8f.css",
+    "main.js": "/senama-react-app/static/js/main.03676887.js",
     "index.html": "/senama-react-app/index.html",
-    "main.549c08a0.css.map": "/senama-react-app/static/css/main.549c08a0.css.map",
-    "main.b96fee71.js.map": "/senama-react-app/static/js/main.b96fee71.js.map"
+    "main.da147c8f.css.map": "/senama-react-app/static/css/main.da147c8f.css.map",
+    "main.03676887.js.map": "/senama-react-app/static/js/main.03676887.js.map"
   },
   "entrypoints": [
-    "static/css/main.549c08a0.css",
-    "static/js/main.b96fee71.js"
+    "static/css/main.da147c8f.css",
+    "static/js/main.03676887.js"
   ]
 }
