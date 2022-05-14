@@ -1,7 +1,8 @@
 import "./App.css";
-import Input from "./components/Input/Input";
+import Input from "./components/ToDoInput/ToDoInput";
 import Title from "./components/Title/Title";
 import ToDoList from "./components/TodoList/ToDoList";
+
 import { useState } from "react";
 import { fetchToDos } from "./Api/toDoApi";
 

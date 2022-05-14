@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { postToDo } from "../../Api/toDoApi";
-
+import { Button, Input } from "antd";
+import s from "./ToDoInput.module.css";
 interface Props {
   getToDos: () => void;
 }
 
-const Input = ({ getToDos }: Props) => {
+const ToDoInput = ({ getToDos }: Props) => {
   const [value, setValue] = useState<string>("");
 
   const changeValue = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -15,7 +16,7 @@ const Input = ({ getToDos }: Props) => {
     e.preventDefault();
     const taskValue = { task: value };
     console.log(taskValue);
-
+    setValue("");
     postToDo(taskValue).then((data) => {
       console.log(data);
       getToDos();
@@ -23,16 +24,22 @@ const Input = ({ getToDos }: Props) => {
   };
 
   return (
-    <div>
+    <div className={s.form}>
       <form onSubmit={onBtnSubmit}>
-        <label>
-          What you need to do?
-          <input value={value} onChange={changeValue} />
-          <button>Create new ToDo </button>
+        <label className={s.label}>
+          <Input
+            className={s.input}
+            placeholder=" What you need to do?"
+            value={value}
+            onChange={changeValue}
+          />
+          <Button className={s.button} type="primary" htmlType="submit">
+            Create new ToDo
+          </Button>
         </label>
       </form>
     </div>
   );
 };
 
-export default Input;
+export default ToDoInput;

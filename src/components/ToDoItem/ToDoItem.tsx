@@ -1,4 +1,6 @@
 import { changeStatusToDo } from "../../Api/toDoApi";
+import { Checkbox, Button } from "antd";
+import { DeleteOutlined } from "@ant-design/icons";
 import s from "./ToDoItem.module.css";
 
 interface ToDo {
@@ -10,7 +12,7 @@ interface ToDo {
 }
 
 const ToDoItem = ({ _id, isActive, task, onDelete, getAllToDos }: ToDo) => {
-  const changeStatus = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const changeStatus = (e: any) => {
     changeStatusToDo(e.target.id, { isActive: !isActive }).then((data) => {
       console.log(data);
       getAllToDos();
@@ -20,17 +22,17 @@ const ToDoItem = ({ _id, isActive, task, onDelete, getAllToDos }: ToDo) => {
   return (
     <li key={_id} className={s.toDo}>
       <label className={s.label}>
-        <input
+        <Checkbox
           id={_id}
           onChange={changeStatus}
           type="checkbox"
           checked={!isActive}
         />
-        <p className={s.descr}>{task}</p>
+        <p className={isActive ? s.descr : s.disabled}>{task}</p>
       </label>
-      <button id={_id} onClick={onDelete}>
-        x
-      </button>
+      <Button className={s.button} type="default" id={_id} onClick={onDelete}>
+        <DeleteOutlined />
+      </Button>
     </li>
   );
 };
