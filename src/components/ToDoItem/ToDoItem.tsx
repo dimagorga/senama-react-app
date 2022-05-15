@@ -13,8 +13,7 @@ interface ToDo {
 
 const ToDoItem = ({ _id, isActive, task, onDelete, getAllToDos }: ToDo) => {
   const changeStatus = (e: any) => {
-    changeStatusToDo(e.target.id, { isActive: !isActive }).then((data) => {
-      console.log(data);
+    changeStatusToDo(e.target.id, { isActive: !isActive }).then(() => {
       getAllToDos();
     });
   };

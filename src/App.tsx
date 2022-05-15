@@ -18,7 +18,6 @@ function App() {
   const getToDos = () => {
     fetchToDos().then((data) => {
       setToDos(data.toDos);
-      console.log(toDos);
     });
   };
   return (

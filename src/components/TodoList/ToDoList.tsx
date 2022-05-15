@@ -15,17 +15,9 @@ interface Props {
 }
 
 const ToDoList = ({ toDos, getToDos }: Props) => {
-  // const [toDos, setToDos] = useState<ToDo[] | []>([]);
   useEffect(() => {
     getToDos();
   }, []);
-
-  // const getToDos = () => {
-  //   fetchToDos().then((data) => {
-  //     setToDos(data.toDos);
-  //     console.log(toDos);
-  //   });
-  // };
 
   const onDelClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     console.log(e.currentTarget.id);

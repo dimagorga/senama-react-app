@@ -15,10 +15,8 @@ const ToDoInput = ({ getToDos }: Props) => {
   const onBtnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const taskValue = { task: value };
-    console.log(taskValue);
     setValue("");
     postToDo(taskValue).then((data) => {
-      console.log(data);
       getToDos();
     });
   };
